@@ -1,86 +1,66 @@
+<h1 align="center">
+  SSOON: Short Soon, URL shortener with an airtable backend
+</h1>
 <!-- AUTO-GENERATED-CONTENT:START (STARTER) -->
 <p align="center">
-  <a href="https://www.gatsbyjs.org">
-    <img alt="Gatsby" src="https://www.gatsbyjs.org/monogram.svg" width="60" />
+  <a href="https://www.ssoon.co">
+    <img alt="Gatsby" src="./.static-readme/logo.jpeg" />
   </a>
 </p>
-<h1 align="center">
-  Gatsby's default starter
-</h1>
 
-Kick off your project with this default boilerplate. This starter ships with the main Gatsby configuration files you might need to get up and running blazing fast with the blazing fast app generator for React.
+This is a simple short-url service that works with
+[netlify functions](https://www.netlify.com/docs/functions/) and uses
+[airtable](https://airtable.com).
 
-_Have another more specific idea? You may want to check out our vibrant collection of [official and community-created starters](https://www.gatsbyjs.org/docs/gatsby-starters/)._
+It's recommended to use this with
+[CloudFlare caching](https://support.cloudflare.com/hc/en-us/articles/200168326-Are-301-and-302-redirects-cached-by-Cloudflare-)
+because airtable has a limit of 5 requests per second. Also, CloudFlare can give
+you nice analytics for free.
 
-## 🚀 Quick start
+## 🚀 Usage
 
-1.  **Create a Gatsby site.**
+First, setup an airtable account with a base and table. The table should have
+a column for the short code and one for the long link.
 
-    Use the Gatsby CLI to create a new site, specifying the default starter.
+Then set the following environment variables in netlify:
 
-    ```sh
-    # create a new Gatsby site using the default starter
-    gatsby new my-default-starter https://github.com/gatsbyjs/gatsby-starter-default
-    ```
+```
+DEFAULT_REDIRECT_URL -> https://example.com
+AIRTABLE_KEY -> *****************
+AIRTABLE_BASE -> *****************
+AIRTABLE_TABLE -> URLs
+AIRTABLE_SHORT_CODE_FIELD -> Short Code
+AIRTABLE_LONG_LINK_FIELD -> Long Link
+ENABLE_CACHE -> false
+```
 
-1.  **Start developing.**
+> Note: `AIRTABLE_TABLE`, `AIRTABLE_SHORT_CODE_FIELD`,
+> `AIRTABLE_LONG_LINK_FIELD`, and `ENABLE_CACHE` are showing the default values
+> above. If that's what you call your table and fields then you don't need to
+> set those variables.
 
-    Navigate into your new site’s directory and start it up.
+> Note also that you can use a `.env` file instead, just don't commit this to
+> source control :) (this is useful for local development as `.env` is in the
+> `.gitignore`).
 
-    ```sh
-    cd my-default-starter/
-    gatsby develop
-    ```
+Redirects should be setup automatically for you in the `netlify.toml`, so you
+shouldn't have to do anything there.
 
-1.  **Open the source code and start editing!**
+Now go ahead and test that your redirects are working as expected. Just go to
+the short URL version of your netlify app and it should redirect you like so:
+http://jsair.netlify.com/first -> https://javascriptair.com/episodes/2015-12-09/
 
-    Your site is now running at `http://localhost:8000`!
+If that works you're on the right track!
 
-    _Note: You'll also see a second link: _`http://localhost:8000/___graphql`_. This is a tool you can use to experiment with querying your data. Learn more about using this tool in the [Gatsby tutorial](https://www.gatsbyjs.org/tutorial/part-five/#introducing-graphiql)._
+Next, [set up Netlify with a custom domain](https://www.netlify.com/docs/custom-domains/)
+then verify that the redirect works with the custom domain.
 
-    Open the `my-default-starter` directory in your code editor of choice and edit `src/pages/index.js`. Save your changes and the browser will update in real time!
+Now, go get CloudFlare setup with your custom domain to prevent your function
+from being called more than airtable's rate limiting can handle.
 
-## 🧐 What's inside?
-
-A quick look at the top-level files and directories you'll see in a Gatsby project.
-
-    .
-    ├── node_modules
-    ├── src
-    ├── .gitignore
-    ├── .prettierrc
-    ├── gatsby-browser.js
-    ├── gatsby-config.js
-    ├── gatsby-node.js
-    ├── gatsby-ssr.js
-    ├── LICENSE
-    ├── package-lock.json
-    ├── package.json
-    └── README.md
-
-1.  **`/node_modules`**: This directory contains all of the modules of code that your project depends on (npm packages) are automatically installed.
-
-2.  **`/src`**: This directory will contain all of the code related to what you will see on the front-end of your site (what you see in the browser) such as your site header or a page template. `src` is a convention for “source code”.
-
-3.  **`.gitignore`**: This file tells git which files it should not track / not maintain a version history for.
-
-4.  **`.prettierrc`**: This is a configuration file for [Prettier](https://prettier.io/). Prettier is a tool to help keep the formatting of your code consistent.
-
-5.  **`gatsby-browser.js`**: This file is where Gatsby expects to find any usage of the [Gatsby browser APIs](https://www.gatsbyjs.org/docs/browser-apis/) (if any). These allow customization/extension of default Gatsby settings affecting the browser.
-
-6.  **`gatsby-config.js`**: This is the main configuration file for a Gatsby site. This is where you can specify information about your site (metadata) like the site title and description, which Gatsby plugins you’d like to include, etc. (Check out the [config docs](https://www.gatsbyjs.org/docs/gatsby-config/) for more detail).
-
-7.  **`gatsby-node.js`**: This file is where Gatsby expects to find any usage of the [Gatsby Node APIs](https://www.gatsbyjs.org/docs/node-apis/) (if any). These allow customization/extension of default Gatsby settings affecting pieces of the site build process.
-
-8.  **`gatsby-ssr.js`**: This file is where Gatsby expects to find any usage of the [Gatsby server-side rendering APIs](https://www.gatsbyjs.org/docs/ssr-apis/) (if any). These allow customization of default Gatsby settings affecting server-side rendering.
-
-9.  **`LICENSE`**: Gatsby is licensed under the MIT license.
-
-10. **`package-lock.json`** (See `package.json` below, first). This is an automatically generated file based on the exact versions of your npm dependencies that were installed for your project. **(You won’t change this file directly).**
-
-11. **`package.json`**: A manifest file for Node.js projects, which includes things like metadata (the project’s name, author, etc). This manifest is how npm knows which packages to install for your project.
-
-12. **`README.md`**: A text file containing useful reference information about your project.
+If you're not using CloudFlare, then set `ENABLE_CACHE` to `true` so you can get
+some caching from Netlify. That always seemed to not work very well for me
+though (which is one reason I use CloudFlare instead) so good luck.
 
 ## 🎓 Learning Gatsby
 
@@ -92,6 +72,7 @@ Looking for more guidance? Full documentation for Gatsby lives [on the website](
 
 ## 💫 Deploy
 
-[![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/gatsbyjs/gatsby-starter-default)
+Next deploy this github repo to netlify:
 
-<!-- AUTO-GENERATED-CONTENT:END -->
+[![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/khriztianmoreno/ssoon-short-urls)
+
