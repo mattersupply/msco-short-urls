@@ -1,3 +1,4 @@
+[![Netlify Status](https://api.netlify.com/api/v1/badges/8854f41e-e56e-4632-a782-635f407ae893/deploy-status)](https://app.netlify.com/sites/ssoon-shorten-url/deploys)
 <h1 align="center">
   SSOON: Short Soon, URL shortener with an airtable backend
 </h1>
