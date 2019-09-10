@@ -1,4 +1,4 @@
-[![Netlify Status](https://api.netlify.com/api/v1/badges/8854f41e-e56e-4632-a782-635f407ae893/deploy-status)](https://app.netlify.com/sites/ssoon-shorten-url/deploys)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/5e117784-883d-43ef-814e-62ae6e18e90c/deploy-status)](https://app.netlify.com/sites/msco-io/deploys)
 <h1 align="center">
   MSCo ✂️: Short Soon, URL shortener with an airtable backend
 </h1>
@@ -13,7 +13,7 @@ This is a simple short-url service that works with
 
 Now go ahead and test that your redirects are working as expected. Just go to
 the short URL version of your netlify app and it should redirect you like so:
-http://msco.io/repos -> https://github.com/mattersupply/
+https://msco.io/repos -> https://github.com/mattersupply/
 
 If that works you're on the right track!
 
