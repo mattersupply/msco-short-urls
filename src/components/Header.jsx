@@ -43,7 +43,7 @@ const Header = () => (
             <Logo>
               <Link to="/">
                 <span role="img" aria-label="emoji">👨🏼‍💻</span>
-                <span> ssoon </span>
+                <span> msco </span>
                 <span role="img" aria-label="emoji">✂️</span>
               </Link>
             </Logo>
@@ -54,12 +54,7 @@ const Header = () => (
                 <ul>
                   <li><Link to="/">Home</Link></li>
                   <li>
-                    <a href="https://khriztianmoreno.dev" target="_blank" rel="noopener noreferrer">
-                      About
-                    </a>
-                  </li>
-                  <li>
-                    <a href="https://khriztianmoreno.dev" target="_blank" rel="noopener noreferrer">
+                    <a href="//mattersupply.co/" target="_blank" rel="noopener noreferrer">
                       Contact
                     </a>
                   </li>

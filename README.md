@@ -1,12 +1,7 @@
 [![Netlify Status](https://api.netlify.com/api/v1/badges/8854f41e-e56e-4632-a782-635f407ae893/deploy-status)](https://app.netlify.com/sites/ssoon-shorten-url/deploys)
 <h1 align="center">
-  SSOON ✂️: Short Soon, URL shortener with an airtable backend
+  MSCo ✂️: Short Soon, URL shortener with an airtable backend
 </h1>
-<p align="center">
-  <a href="https://ssoon.io/">
-    <img alt="Gatsby" src="https://p63.f2.n0.cdn.getcloudapp.com/items/yAuoeWDl/Screen+Recording+2019-09-07+at+11.53+AM.gif?v=dd5ee3cf6d979ff54fc0b450f1ef9b2a" width="100%" />
-  </a>
-</p>
 
 This is a simple short-url service that works with
 [netlify functions](https://www.netlify.com/docs/functions/) and uses
@@ -14,11 +9,11 @@ This is a simple short-url service that works with
 
 ## 🚀 Live demo
 
-[ssoon.io](https://ssoon.io/)
+[msco.io](https://msco.io/)
 
 Now go ahead and test that your redirects are working as expected. Just go to
 the short URL version of your netlify app and it should redirect you like so:
-http://ssoon.io/codeBase -> https://github.com/khriztianmoreno/ssoon-short-urls/
+http://msco.io/repos -> https://github.com/mattersupply/
 
 If that works you're on the right track!
 
@@ -32,4 +27,4 @@ Looking for more guidance? Full documentation for Gatsby lives [on the website](
 
 ## 💫 Deploy
 
-[![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/khriztianmoreno/ssoon-short-urls)
+[![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/mattersupply/msco-short-urls)
